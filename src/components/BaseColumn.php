@@ -607,12 +607,14 @@ abstract class BaseColumn extends BaseObject
         }
         
         $id = isset($options['id']) ? $options['id'] : $this->normalize($name);
+        $isEmbedded  = isset($options['isEmbedded'])?$options['isEmbedded']:false;
         $model = $this->getModel();
         if ($model instanceof Model) {
             $widgetOptions = [
                 'model'     => $model,
                 'attribute' => $this->name,
                 'value'     => $value,
+                'name' => ($isEmbedded) ? $name : null,
                 'options'   => [
                     'id'        => $id,
                     'name'      => $name,
